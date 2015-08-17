@@ -1,0 +1,4 @@
+# DONT IGNORE THE MAIN FILE, DUDE!
+# npm will use .gitignore to automatically generate
+# an .npmignore file if you do not already have one
+# this empty file prevents that from happening

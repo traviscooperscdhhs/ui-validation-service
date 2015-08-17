@@ -7,11 +7,16 @@
     "test": "npm run jscs && npm run jshint && npm run build-tests && npm run testem",
     "jscs": "node_modules/.bin/jscs src",
     "jshint": "node_modules/.bin/jshint src",
-    "build-tests": "node_modules/.bin/browserify --extension=.jsx test/shim.js test/validation-service-spec.js --transform babelify -d -o test/tests.js",
-    "testem": "node_modules/.bin/testem ci"
+    "build": "node_modules/.bin/babel src/ValidationService.js -o validation-service.js",
+    "build-tests": "node_modules/.bin/browserify test/shim.js test/validation-service-spec.js --transform babelify -d -o test/tests.js",
+    "testem": "node_modules/.bin/testem ci",
+    "prepublish": "npm run build"
   },
   "author": "SCDHHS",
   "license": "ISC",
+  "publishConfig": {
+    "access": "public"
+  },
   "peerDependencies": {
     "lodash": "3"
   },
