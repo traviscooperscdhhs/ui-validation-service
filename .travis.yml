@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+- '0.12'
+deploy:
+  provider: npm
+  email: michael.allen@scdhhs.gov
+  api_key:
+    secure: R29Od/ogn73e+/KJo5JlLV2XC6gCExQKRa1izzc3iSoUH2SQo4GytyBu2sSafkJuhUIvXItybbtwXjjxNbRkV3tBzEUFBM5WDQKwXdBharI/W1cNGhRuVyaspLI756PKv65tpeOWoNvK6cTQyDylSbz8fI8u/T1st1K8QHVxcAtNbcS0pt44nPMGCzp5FYYOnC1RYuJxJX7s841PAtHyv7rwKMIpoBvDbsilQojxsB4TRKvdLb27jLbSXhjnWYxvLevG+O8JsboeHnZ0YGz3ke2YDqBfnaHOA7pkQbpJYGHeZdOxKUC2K31GSu9ewH0CH3J/WUID/tCfONfuPdHsGZyiHkwYPngM6uX4gqc70ARlOGDUXJvVTqeBgTYQsrLZXcSkPWtgTQcFYxLEx0BLTPJTpos3tmzBhLJj4FL9ANjVDgEM6FaGCvBerPGC1bmfyqW0vNu953BBofKKodLsueeDpQTby6fxDKg5SmnVPVCU+knrhz7/pkZrzqgnqaKgXBTl0fP/aRKAjUXUbmEloX8JXRrOl0yIFT8oeHsQ9FOsc+R3dIwu1T3UnooBVYaLoXd4owu8T456Mpz+WRf11iFGjUWTjlax4g+2bYSR4u0NAbFqtR9Rm3fIWAyg8Mn49BRXIUZeGPVoDNKTgD5VT0EOAomOV44MzcLDo6GJCOc=
+  on:
+    branch: master
+    tags: true
+    repo: scdhhs/ui-validation-service
