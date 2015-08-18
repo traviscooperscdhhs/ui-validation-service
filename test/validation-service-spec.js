@@ -51,4 +51,33 @@ describe('ValidationService', () => {
       expect(_.has(fixture.field.rules, rules[0].ruleName)).toBe(true);
     });
   });
+
+  it('#getRulesPayload', function() {
+    let payload = ValidationService.getRulesPayload(['BSR']);
+    expect(payload[0].ruleName).toEqual('BSR');
+  });
+
+  it('#parseVerficactionResponse SUCCESS', function() {
+    let response = ValidationService.parseVerficactionResponse({operationStatus: 'SUCCESS'});
+    expect(response.status).toEqual('success');
+    expect(response.message).toEqual('');
+  });
+
+  it('#parseVerficactionResponse FAILURE', function() {
+    let response = ValidationService.parseVerficactionResponse({operationStatus: 'FAILURE', operationMessages: [{
+      level: 'ERROR',
+      description: 'Test Message FAILURE'
+    }]});
+    expect(response.status).toEqual('failure');
+    expect(response.message).toEqual('Test Message FAILURE');
+  });
+
+  it('#parseVerficactionResponse WARNING', function() {
+    let response = ValidationService.parseVerficactionResponse({operationStatus: 'FAILURE', operationMessages: [{
+      level: 'WARN',
+      description: 'Test Message WARN'
+    }]});
+    expect(response.status).toEqual('warning');
+    expect(response.message).toEqual('Test Message WARN');
+  });
 });

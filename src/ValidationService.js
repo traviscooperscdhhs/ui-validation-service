@@ -34,6 +34,36 @@ class ValidationService {
     }));
   }
 
+  /**
+   * Build simple BSR payload
+   * @param {array} rules BSR rules array
+   * @return {object}
+   */
+  static getRulesPayload(rules) {
+    return _.map(rules, (rule) => {
+      return {ruleName: rule};
+    });
+  }
+
+  /**
+   * Parse verification request response
+   * @param {object} response Ajax request response
+   * @return {object} Resp with 'status' and 'message' used for verification tasks.
+   */
+  static parseVerficactionResponse(response) {
+    let status = 'waiting';
+    let message = '';
+    if (response.operationStatus === 'SUCCESS') {
+      status = 'success';
+    } else {
+      let operationMessages = _.isEmpty(response.operationMessages) ? [{level: 'ERROR', description: ''}] : response.operationMessages;
+      let respObj = operationMessages[0];
+      status = respObj.level === 'ERROR' ? 'failure' : 'warning';
+      message = respObj.description;
+    }
+    return {status, message};
+  }
+
   constructor(url = VALIDATION_API_URL) {
     this.url = url;
   }
