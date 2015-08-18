@@ -16,7 +16,7 @@ describe('ValidationService', () => {
   it('can call validation endpoint', (done) => {
     let $validation = new ValidationService();
     let input = ValidationService.createFieldInput(fixture.field);
-    let rules = ValidationService.createFieldRulesPayload(fixture.field);
+    let rules = ValidationService.getRulesPayload(fixture.field);
 
     jasmine.Ajax
       .stubRequest(VALIDATION_API_URL)
@@ -46,15 +46,10 @@ describe('ValidationService', () => {
 
   describe('#createFieldRulesPayload', () => {
     it('can create a list of rules from passed in rules config', () => {
-      let rules = ValidationService.createFieldRulesPayload(fixture.field);
+      let rules = ValidationService.getRulesPayload(fixture.field);
       expect(rules.length).toBe(2);
       expect(_.has(fixture.field.rules, rules[0].ruleName)).toBe(true);
     });
-  });
-
-  it('#getRulesPayload', function() {
-    let payload = ValidationService.getRulesPayload(['BSR']);
-    expect(payload[0].ruleName).toEqual('BSR');
   });
 
   it('#parseVerficactionResponse SUCCESS', function() {

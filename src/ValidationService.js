@@ -25,24 +25,13 @@ class ValidationService {
    * @param {object} field - a Field config
    * @returns {object[]}
    */
-  static createFieldRulesPayload(field) {
-    return _.compact(_.map(field.rules, (enabled, ruleName) => {
+  static getRulesPayload(component) {
+    return _.compact(_.map(component.rules, (enabled, ruleName) => {
       return !enabled ? null : {
         ruleName,
-        config: _.pick(field, ['type', 'name', 'id', 'maxLength', 'required'])
+        config: _.pick(component, ['type', 'name', 'id', 'maxLength', 'required'])
       };
     }));
-  }
-
-  /**
-   * Build simple BSR payload
-   * @param {array} rules BSR rules array
-   * @return {object}
-   */
-  static getRulesPayload(rules) {
-    return _.map(rules, (rule) => {
-      return {ruleName: rule};
-    });
   }
 
   /**
