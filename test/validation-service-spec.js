@@ -58,13 +58,13 @@ describe('ValidationService', () => {
   });
 
   it('#parseVerficactionResponse SUCCESS', function() {
-    let response = ValidationService.parseVerficactionResponse({operationStatus: 'SUCCESS'});
+    let response = ValidationService.parseVerificationResponse({operationStatus: 'SUCCESS'});
     expect(response.status).toEqual('success');
     expect(response.message).toEqual('');
   });
 
   it('#parseVerficactionResponse FAILURE', function() {
-    let response = ValidationService.parseVerficactionResponse({operationStatus: 'FAILURE', operationMessages: [{
+    let response = ValidationService.parseVerificationResponse({operationStatus: 'FAILURE', operationMessages: [{
       level: 'ERROR',
       description: 'Test Message FAILURE'
     }]});
@@ -73,7 +73,7 @@ describe('ValidationService', () => {
   });
 
   it('#parseVerficactionResponse WARNING', function() {
-    let response = ValidationService.parseVerficactionResponse({operationStatus: 'FAILURE', operationMessages: [{
+    let response = ValidationService.parseVerificationResponse({operationStatus: 'FAILURE', operationMessages: [{
       level: 'WARN',
       description: 'Test Message WARN'
     }]});

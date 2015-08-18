@@ -50,7 +50,7 @@ class ValidationService {
    * @param {object} response Ajax request response
    * @return {object} Resp with 'status' and 'message' used for verification tasks.
    */
-  static parseVerficactionResponse(response) {
+  static parseVerificationResponse(response) {
     let status = 'waiting';
     let message = '';
     if (response.operationStatus === 'SUCCESS') {
