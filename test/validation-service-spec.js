@@ -16,7 +16,7 @@ describe('ValidationService', () => {
   it('can call validation endpoint', (done) => {
     let $validation = new ValidationService();
     let input = ValidationService.createFieldInput(fixture.field);
-    let rules = ValidationService.createFieldRulesPayload(fixture.field);
+    let rules = ValidationService.getRulesPayload(fixture.field);
 
     jasmine.Ajax
       .stubRequest(VALIDATION_API_URL)
@@ -44,11 +44,35 @@ describe('ValidationService', () => {
     });
   });
 
-  describe('#createFieldRulesPayload', () => {
+  describe('#getRulesPayload', () => {
     it('can create a list of rules from passed in rules config', () => {
-      let rules = ValidationService.createFieldRulesPayload(fixture.field);
+      let rules = ValidationService.getRulesPayload(fixture.field);
       expect(rules.length).toBe(2);
       expect(_.has(fixture.field.rules, rules[0].ruleName)).toBe(true);
     });
+  });
+
+  it('#parseVerficactionResponse SUCCESS', function() {
+    let response = ValidationService.parseVerificationResponse({operationStatus: 'SUCCESS'});
+    expect(response.status).toEqual('success');
+    expect(response.message).toEqual('');
+  });
+
+  it('#parseVerficactionResponse FAILURE', function() {
+    let response = ValidationService.parseVerificationResponse({operationStatus: 'FAILURE', operationMessages: [{
+      level: 'ERROR',
+      description: 'Test Message FAILURE'
+    }]});
+    expect(response.status).toEqual('failure');
+    expect(response.message).toEqual('Test Message FAILURE');
+  });
+
+  it('#parseVerficactionResponse WARNING', function() {
+    let response = ValidationService.parseVerificationResponse({operationStatus: 'FAILURE', operationMessages: [{
+      level: 'WARN',
+      description: 'Test Message WARN'
+    }]});
+    expect(response.status).toEqual('warning');
+    expect(response.message).toEqual('Test Message WARN');
   });
 });
