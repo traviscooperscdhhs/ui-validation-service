@@ -44,7 +44,7 @@ describe('ValidationService', () => {
     });
   });
 
-  describe('#createFieldRulesPayload', () => {
+  describe('#getRulesPayload', () => {
     it('can create a list of rules from passed in rules config', () => {
       let rules = ValidationService.getRulesPayload(fixture.field);
       expect(rules.length).toBe(2);
