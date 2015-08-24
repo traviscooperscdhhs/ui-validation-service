@@ -2,7 +2,7 @@
   "name": "@scdhhs/ui-validation-service",
   "version": "1.2.0",
   "description": "Data store that performs validation.",
-  "main": "ui-validation-store.js",
+  "main": "validation-service.js",
   "scripts": {
     "test": "npm run jscs && npm run jshint && npm run build-tests && npm run testem",
     "jscs": "node_modules/.bin/jscs src",
