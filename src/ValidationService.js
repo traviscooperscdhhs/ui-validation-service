@@ -8,7 +8,7 @@ import _ from 'lodash';
  */
 const fieldProperties = ['type', 'name', 'id', 'maxLength', 'required', 'min', 'max'];
 
-export const VALIDATION_API_URL = '/config-manager/api/v1/ui/rules';
+export const VALIDATION_API_URL = '/emmis-portal/api/v1/rules';
 
 /**
  * Handles calling validation API endpoint, and provides convenience methods
