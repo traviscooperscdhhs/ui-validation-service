@@ -1,7 +1,14 @@
 'use-strict';
 import _ from 'lodash';
 
-export const VALIDATION_API_URL = '/emmis-portal/api/v1/rules';
+/**
+ * A list of properties to include with the rule config payload.
+ * @type {string[]}
+ * @private
+ */
+const fieldProperties = ['type', 'name', 'id', 'maxLength', 'required', 'min', 'max'];
+
+export const VALIDATION_API_URL = '/config-manager/api/v1/ui/rules';
 
 /**
  * Handles calling validation API endpoint, and provides convenience methods
@@ -29,7 +36,7 @@ class ValidationService {
     return _.compact(_.map(component.rules, (enabled, ruleName) => {
       return !enabled ? null : {
         ruleName,
-        config: _.pick(component, ['type', 'name', 'id', 'maxLength', 'required'])
+        config: _.pick(component, fieldProperties)
       };
     }));
   }
